@@ -1,4 +1,4 @@
-package main.java.com.seayou.aio;
+package cn.seayou.aio;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
