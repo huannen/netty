@@ -12,7 +12,7 @@ import java.util.concurrent.Executors;
 public class AioTcpServer {
     public static void main(String[] args) throws Exception {
         /*
-         * 0、通道可以创建通道池
+         * 0、通道可以创建通道组（线程池）
          */
         AsynchronousChannelGroup group = AsynchronousChannelGroup.withThreadPool(Executors.newFixedThreadPool(4));
 
