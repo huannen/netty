@@ -1,18 +1,14 @@
 package cn.seayou.netty;
 
-import cn.seayou.nio.NioTcpServer;
-import io.netty.bootstrap.Bootstrap;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 import io.netty.channel.*;
-import io.netty.channel.internal.ChannelUtils;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.util.CharsetUtil;
 
-import java.nio.ByteBuffer;
 
 public class NettyDemoServer {
     public static void main(String[] args) throws InterruptedException {
@@ -37,7 +33,8 @@ public class NettyDemoServer {
              * 3、配置参数，使用链式编程的思想
              */
             bootstrap.group(bossGroup, workerGroup) //设置两个线程组
-                    .channel(NioServerSocketChannel.class) //使用NioServerSocketChannel作为服务器的通道 实现
+                    //设置channel工厂原料，使用NioServerSocketChannel作为服务器的通道实现
+                    .channel(NioServerSocketChannel.class)
                     /*
                      * 初始化服务器连接队列大小，服务端处理客户端连接请求是顺序处理的,所以同一时间只能处理一个客户端连接。
                      * 多个客户端同时来的时候,服务端将不能处理的客户端连接请求放在队列中等待处理
@@ -57,6 +54,9 @@ public class NettyDemoServer {
              * 启动服务器(并绑定端口)，bind是异步操作，sync方法是等待异步操作执行完毕
              */
             ChannelFuture channelFuture = bootstrap.bind(9000).sync();
+
+            //channelFuture.isSuccess();
+
             //给cf注册监听器，监听我们关心的事件
             channelFuture.addListener(new ChannelFutureListener() {
                 @Override
