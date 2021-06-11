@@ -1,5 +1,4 @@
 参考博客：https://blog.csdn.net/qq_40378034/article/details/117014648
-https://blog.csdn.net/sky_jiangcheng/article/details/100013824?utm_medium=distribute.pc_relevant.none-task-blog-baidujs_title-1&spm=1001.2101.3001.4242
 
 实际上属于分布式选举项目
 
