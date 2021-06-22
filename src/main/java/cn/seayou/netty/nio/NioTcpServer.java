@@ -20,7 +20,7 @@ public class NioTcpServer {
         // 2、设置通道为非阻塞模式，因为NIO中的selector选择器是非阻塞模式的，否则注册到selector的时候会报错
         serverSocketChannel.configureBlocking(false);
 
-        // 3、创建一个selector
+        // 3、创建一个selector，负责监听ServerSocketChannel和SocketChannel，所以要把相关的channel注册到selector上
         Selector selector = Selector.open();
 
         // 4、将通道绑定到selector上去，并且设定感兴趣的操作（监听的操作事件）
@@ -28,6 +28,10 @@ public class NioTcpServer {
 
         // 5、循环监听客户端的请求事件
         while(true){
+            /*
+             * select 方法是阻塞的，那为什么还说NIO是非阻塞的呢？
+             */
+
             System.out.println("waiting for the request from clients");
             int select  = selector.select();
             System.out.println("got a request!!!");
