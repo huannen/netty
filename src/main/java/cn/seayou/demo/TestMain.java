@@ -1,5 +1,6 @@
 package cn.seayou.demo;
 
+import java.io.*;
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -7,7 +8,7 @@ import java.util.concurrent.CyclicBarrier;
 
 public class TestMain {
     volatile String name;
-    public static void main(String[] args) throws InstantiationException, IllegalAccessException {
+    public static void main(String[] args) throws InstantiationException, IllegalAccessException, FileNotFoundException {
         ArrayList<String> list = new ArrayList<>();
 
         HashMap<String, String> hashMap = new HashMap<>();
@@ -18,5 +19,10 @@ public class TestMain {
 
         Class clazz = TestMain.class;
         TestMain  estMain = (TestMain) clazz.newInstance();
+
+        InputStream inputStream = new FileInputStream("");
+
+        Reader reader;
+
     }
 }
