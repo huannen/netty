@@ -80,6 +80,7 @@ public class NettyDemoServer {
 }
 
 class NettyServerHandler extends ChannelInboundHandlerAdapter{
+
     /*
      * 当客户端向服务端发送数据的时候会触发
      */
@@ -88,7 +89,7 @@ class NettyServerHandler extends ChannelInboundHandlerAdapter{
         System.out.println("netty server thread for reading:"+Thread.currentThread().getName());
         Channel channel = ctx.channel();
         ChannelPipeline pipeline = ctx.pipeline(); //本质是一个双向链接, 出站入站
-        // 将 msg 转成一个 ByteBuf，类似NIO 的 ByteBuffer
+        // 将 msg 转成一个 ByteBuf，类似NIO 的 ByteBuffer，这里也可以在管道里面加一个StringEncoder的handler
         ByteBuf buffer = (ByteBuf) msg;
         System.out.println("get data:"+buffer.toString(CharsetUtil.UTF_8));
     }
